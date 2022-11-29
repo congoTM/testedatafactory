@@ -1,0 +1,12 @@
+{
+	"name": "OutputHyPaySql",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureSqlDatabase",
+		"typeProperties": {
+			"connectionString": "integrated security=False;encrypt=True;connection timeout=30;data source=sqlservertestergd.database.windows.net;initial catalog=sqldatabasetestergd;user id=adminteste",
+			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkRBVEFGQUNUT1JZQDI2MkM0NzVBLTY4Q0MtNDU3Ny05MEQyLTEwQ0ExNkU5NjRDRl9mZmFiNzY5ZS1kMmY0LTQzZjMtOGY5NS0yZGIxYzdlYmQ0NDQiDQp9"
+		}
+	}
+}

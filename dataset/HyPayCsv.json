@@ -1,0 +1,177 @@
+{
+	"name": "HyPayCsv",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "InputHypay",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "HipayTestFile.csv",
+				"container": "input"
+			},
+			"columnDelimiter": ";",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "creation_date_day",
+				"type": "String"
+			},
+			{
+				"name": "creation_date_hour",
+				"type": "String"
+			},
+			{
+				"name": "creation_date_timezone",
+				"type": "String"
+			},
+			{
+				"name": "capture_date_day",
+				"type": "String"
+			},
+			{
+				"name": "capture_date_hour",
+				"type": "String"
+			},
+			{
+				"name": "capture_date_timezone",
+				"type": "String"
+			},
+			{
+				"name": "transaction_id",
+				"type": "String"
+			},
+			{
+				"name": "transaction_type",
+				"type": "String"
+			},
+			{
+				"name": "currency",
+				"type": "String"
+			},
+			{
+				"name": "amount",
+				"type": "String"
+			},
+			{
+				"name": "transaction_label",
+				"type": "String"
+			},
+			{
+				"name": "is_3ds",
+				"type": "String"
+			},
+			{
+				"name": "issuer_email",
+				"type": "String"
+			},
+			{
+				"name": "recipient_email",
+				"type": "String"
+			},
+			{
+				"name": "transaction_status",
+				"type": "String"
+			},
+			{
+				"name": "collected",
+				"type": "String"
+			},
+			{
+				"name": "collect_date_day",
+				"type": "String"
+			},
+			{
+				"name": "collect_date_hour",
+				"type": "String"
+			},
+			{
+				"name": "collect_date_timezone",
+				"type": "String"
+			},
+			{
+				"name": "refunded_amount",
+				"type": "String"
+			},
+			{
+				"name": "mother_transaction",
+				"type": "String"
+			},
+			{
+				"name": "payment_method",
+				"type": "String"
+			},
+			{
+				"name": "payment_id",
+				"type": "String"
+			},
+			{
+				"name": "website_id",
+				"type": "String"
+			},
+			{
+				"name": "site_url",
+				"type": "String"
+			},
+			{
+				"name": "subscription_id",
+				"type": "String"
+			},
+			{
+				"name": "recurrence_number",
+				"type": "String"
+			},
+			{
+				"name": "merchant_reference",
+				"type": "String"
+			},
+			{
+				"name": "card_country",
+				"type": "String"
+			},
+			{
+				"name": "ip_country",
+				"type": "String"
+			},
+			{
+				"name": "card_owner",
+				"type": "String"
+			},
+			{
+				"name": "card_num",
+				"type": "String"
+			},
+			{
+				"name": "fees",
+				"type": "String"
+			},
+			{
+				"name": "fees_vat",
+				"type": "String"
+			},
+			{
+				"name": "value_date_day",
+				"type": "String"
+			},
+			{
+				"name": "value_date_hour",
+				"type": "String"
+			},
+			{
+				"name": "value_date_timezone",
+				"type": "String"
+			},
+			{
+				"name": "reject_reason",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

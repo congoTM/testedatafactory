@@ -1,0 +1,114 @@
+{
+	"name": "dataflow1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "HyPayCsv",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "HyPaySql",
+						"type": "DatasetReference"
+					},
+					"name": "HypayClean"
+				}
+			],
+			"transformations": [
+				{
+					"name": "derivedColumn1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          creation_date_day as string,",
+				"          creation_date_hour as string,",
+				"          creation_date_timezone as string,",
+				"          capture_date_day as string,",
+				"          capture_date_hour as string,",
+				"          capture_date_timezone as string,",
+				"          transaction_id as string,",
+				"          transaction_type as string,",
+				"          currency as string,",
+				"          amount as string,",
+				"          transaction_label as string,",
+				"          is_3ds as string,",
+				"          issuer_email as string,",
+				"          recipient_email as string,",
+				"          transaction_status as string,",
+				"          collected as string,",
+				"          collect_date_day as string,",
+				"          collect_date_hour as string,",
+				"          collect_date_timezone as string,",
+				"          refunded_amount as string,",
+				"          mother_transaction as string,",
+				"          payment_method as string,",
+				"          payment_id as string,",
+				"          website_id as string,",
+				"          site_url as string,",
+				"          subscription_id as string,",
+				"          recurrence_number as string,",
+				"          merchant_reference as string,",
+				"          card_country as string,",
+				"          ip_country as string,",
+				"          card_owner as string,",
+				"          card_num as string,",
+				"          fees as string,",
+				"          fees_vat as string,",
+				"          value_date_day as string,",
+				"          value_date_hour as string,",
+				"          value_date_timezone as string,",
+				"          reject_reason as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source1 derive(creation_date_day = coalesce(toDate(creation_date_day,'MM/dd/yyyy'),toDate(creation_date_day,'yyyy/MM/dd'),toDate(creation_date_day,'dd/MM/yyyy'),toDate(creation_date_day,'MMddyyyy'),toDate(creation_date_day,'yyyyddMM'),toDate(creation_date_day,'MMddyyyy'),toDate(creation_date_day,'yyyyMMdd')),",
+				"          capture_date_day = coalesce(toDate(capture_date_day,'MM/dd/yyyy'),toDate(capture_date_day,'yyyy/MM/dd'),toDate(capture_date_day,'dd/MM/yyyy'),toDate(capture_date_day,'MMddyyyy'),toDate(capture_date_day,'yyyyddMM'),toDate(capture_date_day,'MMddyyyy'),toDate(capture_date_day,'yyyyMMdd')),",
+				"          entity = iif(startsWith(transaction_label,'['), substring(transaction_label,2,5), ''),",
+				"          reference = iif(startsWith(transaction_label,'['), substring(transaction_label,10,9), '')) ~> derivedColumn1",
+				"derivedColumn1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          TransactionID as string,",
+				"          TransactionType as string,",
+				"          CreationDate as timestamp,",
+				"          CaptureDate as timestamp,",
+				"          Amount as decimal(18,0),",
+				"          Fees as decimal(18,0),",
+				"          Entity as string,",
+				"          Reference as string,",
+				"          PaymentID as string",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     saveOrder: 1,",
+				"     errorHandlingOption: 'stopOnFirstError',",
+				"     mapColumn(",
+				"          TransactionID = transaction_id,",
+				"          TransactionType = transaction_type,",
+				"          CreationDate = creation_date_day,",
+				"          CaptureDate = capture_date_day,",
+				"          Amount = amount,",
+				"          Fees = fees,",
+				"          Entity = entity,",
+				"          Reference = reference,",
+				"          PaymentID = payment_id",
+				"     ),",
+				"     partitionBy('hash', 1)) ~> HypayClean"
+			]
+		}
+	}
+}

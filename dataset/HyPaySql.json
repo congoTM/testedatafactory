@@ -1,0 +1,62 @@
+{
+	"name": "HyPaySql",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "OutputHyPaySql",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "TransactionID",
+				"type": "varchar"
+			},
+			{
+				"name": "TransactionType",
+				"type": "varchar"
+			},
+			{
+				"name": "CreationDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "CaptureDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "Amount",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "Fees",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "Entity",
+				"type": "varchar"
+			},
+			{
+				"name": "Reference",
+				"type": "varchar"
+			},
+			{
+				"name": "PaymentID",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Tbl_HyPay"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

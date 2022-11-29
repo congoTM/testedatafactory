@@ -1,0 +1,24 @@
+{
+	"name": "OutputHypayCsv",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "InputHypay",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "HypayClean.csv",
+				"container": "output"
+			},
+			"columnDelimiter": ";",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
